@@ -31,4 +31,4 @@ jobs:
           COLLECTION: ${{ secrets.COLLECTION }}
           RKEY: ${{ secrets.RKEY }}
           FILE_PATH: ${{ secrets.FILE_PATH }}
-        run: deno run -A jsr:@fry69/putrecord --quiet --force-fields
+        run: deno run -Ar jsr:@fry69/putrecord --quiet --force-fields
