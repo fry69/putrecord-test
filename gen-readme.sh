@@ -2,5 +2,5 @@
 
 cp template.README.md README.md
 
-echo -e "\nTest date: $(date)" >> README.md
-echo "Test UUID: $(uuidgen)" >> README.md
+echo -e "\nTest date: $(date -u)" >> README.md
+echo -e "\nTest UUID: $(uuidgen)" >> README.md
