@@ -1,0 +1,32 @@
+# Example GitHub Actions workflow for automatic PDS uploads
+# Copy this file to .github/workflows/ in your repository to use it
+name: Upload to PDS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          cache: true
+          deno-version: v2.x
+
+      - name: Upload to PDS
+        env:
+          PDS_URL: ${{ secrets.PDS_URL }}
+          IDENTIFIER: ${{ secrets.IDENTIFIER }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+          COLLECTION: ${{ secrets.COLLECTION }}
+          RKEY: ${{ secrets.RKEY }}
+          FILE_PATH: ${{ secrets.FILE_PATH }}
+        run: deno run -A jsr:@fry69/putrecord --quiet
